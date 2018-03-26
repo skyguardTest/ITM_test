@@ -1,4 +1,3 @@
-GET swg-*/_search
 {
   "query":{
     "bool":{
