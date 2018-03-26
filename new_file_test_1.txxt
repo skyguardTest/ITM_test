@@ -1,0 +1,28 @@
+GET swg-*/_search
+{
+  "query":{
+    "bool":{
+        "filter":{
+          "bool":{
+            "must":[
+                {
+                  "wildcard": { "fullUrl": "*github*" }
+                },
+                {
+                  "term": {"method.keyword": "POST"}
+                },
+                {"exists":{"field" : "cae_attachments.fileSize"}},
+                {
+                  "range":{
+                     "@timestamp":{
+                       "gt" : "2017-12-01T00:00:00.000Z", 
+                       "lt": "2018-03-30T00:00:30.000Z"
+                     }
+                  }
+                }
+              ]
+          }
+      }
+    }
+  }
+}
